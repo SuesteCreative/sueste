@@ -24,11 +24,11 @@
 
 <body>
 
-  <!-- Background Elements -->
+  <!-- 1. Background Layers (Explicit Stacking) -->
+  <div class="fixed-bg-solid"></div>
+  <div id="glow-orb" class="glow-orb"></div>
   <canvas id="canvas-waves" class="fixed-bg-canvas"></canvas>
   <div class="noise-overlay"></div>
-  <!-- NEW GLOBAL ORB -->
-  <div id="glow-orb" class="glow-orb"></div>
 
   <!-- Header -->
   <header class="site-header">
@@ -58,8 +58,9 @@
     <a href="#contacto">Contacto</a>
   </div>
 
-  <!-- 1. HERO SECTION -->
+  <!-- 2. Hero Section -->
   <section id="hero" class="hero">
+    <!-- Video kept as is, but z-index managed in CSS -->
     <div class="hero-video-wrap">
       <video id="heroVideo" class="hero-video-el" autoplay muted loop playsinline>
         <source src="images/hero-video.mp4" type="video/mp4">
@@ -70,8 +71,12 @@
     <div class="container hero-content">
       <div class="hero-title-box">
         <h1>
-          <span id="typed-prefix" data-text="O que move nem sempre se vê. Mas o "></span><br class="mobile-break">
-          <span id="typed-slow" class="typed-highlight" data-text="impacto é "></span>
+          <!-- Layout structure for typed text -->
+          <span id="typed-prefix" class="text-white" data-text="O que move nem sempre se vê. Mas o "></span><br
+            class="mobile-break">
+          <!-- Removed 'typed-highlight' class from the middle span so it stays white -->
+          <span id="typed-slow" class="text-white" data-text="impacto é "></span>
+          <!-- Only this one gets the highlight class (blue) -->
           <span id="typed-highlight" class="typed-highlight" data-text="inevitável."></span>
           <span class="typed-caret"></span>
         </h1>
@@ -93,7 +98,7 @@
     </div>
   </section>
 
-  <!-- 2. AGENCY INTRO -->
+  <!-- 3. Agency Intro -->
   <section id="agencia" class="section">
     <div class="container">
       <div class="grid grid-2-col intro-grid">
@@ -116,13 +121,13 @@
             </div>
           </div>
         </div>
-        <!-- Orb is now global, so this is empty spacing -->
+        <!-- Spacer for layout balance -->
         <div></div>
       </div>
     </div>
   </section>
 
-  <!-- 3. SERVICES -->
+  <!-- 4. Services -->
   <section id="servicos" class="section">
     <div class="container mb-4 text-center">
       <span class="label fade-up">Expertise</span>
@@ -133,24 +138,28 @@
       <div class="services-grid">
         <!-- Service 1 -->
         <div class="service-card glass-card fade-up">
+          <div class="card-gradient-top"></div> <!-- New Gradient Bar -->
           <div class="icon-box"><i data-lucide="palette" size="32"></i></div>
           <h3>Branding</h3>
           <p>Construção de identidade visual. Logótipos, guias de estilo e direção de arte.</p>
         </div>
         <!-- Service 2 -->
         <div class="service-card glass-card fade-up delay-1">
+          <div class="card-gradient-top"></div>
           <div class="icon-box"><i data-lucide="monitor" size="32"></i></div>
           <h3>Digital Web</h3>
           <p>Websites que funcionam. Design UX/UI focado em conversão e performance.</p>
         </div>
         <!-- Service 3 -->
         <div class="service-card glass-card fade-up delay-2">
+          <div class="card-gradient-top"></div>
           <div class="icon-box"><i data-lucide="share-2" size="32"></i></div>
           <h3>Social Media</h3>
           <p>Gestão estratégica de redes sociais. Conteúdo que cria comunidade.</p>
         </div>
         <!-- Service 4 -->
         <div class="service-card glass-card fade-up delay-3">
+          <div class="card-gradient-top"></div>
           <div class="icon-box"><i data-lucide="aperture" size="32"></i></div>
           <h3>Produção</h3>
           <p>Fotografia e vídeo de alta qualidade. Imagens aéreas com drone.</p>
@@ -159,7 +168,7 @@
     </div>
   </section>
 
-  <!-- 4. IPHONE / MOBILE FIRST -->
+  <!-- 5. iPhone / Mobile First -->
   <section class="section mobile-first-section" id="mobile">
     <div class="container grid grid-2-col mf-grid">
       <div class="mf-content fade-up">
@@ -175,7 +184,6 @@
         <div class="iphone" id="iphone-mockup">
           <div class="notch"></div>
           <div class="iphone-screen">
-            <!-- Fake App Interface -->
             <div class="app-top-bar"></div>
             <div class="app-hero-block"></div>
             <div class="app-grid-block">
@@ -187,7 +195,7 @@
     </div>
   </section>
 
-  <!-- 5. PORTFOLIO -->
+  <!-- 6. Portfolio -->
   <section id="portfolio" class="section">
     <div class="container">
       <div class="flex-header mb-4">
@@ -201,12 +209,11 @@
       <div class="portfolio-grid">
         <!-- Project 1 -->
         <a href="#" class="project-card fade-up">
+          <div class="card-gradient-top"></div> <!-- New Gradient Bar -->
           <div class="project-img-box">
             <img src="https://images.unsplash.com/photo-1518655061739-796463555996?auto=format&fit=crop&q=80&w=800"
               alt="DNA">
-            <div class="project-overlay">
-              <span>Ver Projeto</span>
-            </div>
+            <div class="project-overlay"><span>Ver Projeto</span></div>
           </div>
           <div class="project-meta">
             <h3>Desportos Náuticos</h3>
@@ -215,12 +222,11 @@
         </a>
         <!-- Project 2 -->
         <a href="#" class="project-card fade-up delay-1">
+          <div class="card-gradient-top"></div> <!-- New Gradient Bar -->
           <div class="project-img-box">
             <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=800"
               alt="ICON">
-            <div class="project-overlay">
-              <span>Ver Projeto</span>
-            </div>
+            <div class="project-overlay"><span>Ver Projeto</span></div>
           </div>
           <div class="project-meta">
             <h3>ICON Property</h3>
@@ -231,13 +237,12 @@
     </div>
   </section>
 
-  <!-- 6. CONTACT -->
+  <!-- 7. Contact -->
   <section id="contacto" class="section">
     <div class="container contact-layout">
       <div class="contact-info fade-up">
         <h2 class="title-lg mb-2">Vamos criar<br>algo único?</h2>
         <p class="mb-4 lead">Conte-nos sobre o seu projeto. Estamos prontos para elevar a sua marca.</p>
-
         <div class="mb-2">
           <h4 class="contact-label">Email</h4>
           <a href="mailto:hello@sueste.pt" class="contact-link">hello@sueste.pt</a>
@@ -279,9 +284,7 @@
   </footer>
 
   <script src="script.js"></script>
-  <script>
-    lucide.createIcons();
-  </script>
+  <script>lucide.createIcons();</script>
 </body>
 
 </html>

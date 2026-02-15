@@ -1,5 +1,5 @@
 /* 
-  SUESTE CREATIVE AGENCY - V3.6 (TEXTURED & GLOWING)
+  SUESTE CREATIVE AGENCY - V3.8 (FIXES & OPTIMIZATIONS)
 */
 
 :root {
@@ -44,7 +44,8 @@ html {
 body {
   font-family: var(--font-body);
   color: var(--text-main);
-  background-color: var(--bg-body);
+  background-color: transparent;
+  /* Changed to transparrent so layers work */
   line-height: 1.7;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
@@ -81,9 +82,41 @@ video {
 }
 
 /* -----------------------------------------------------------
-   BACKGROUND ANIMATIONS
+   BACKGROUND LAYER STACKING (CRITICAL)
+   Order: Solid(-5) -> Orb(-4) -> Canvas(-3) -> Content(1) -> Noise(9999)
 ----------------------------------------------------------- */
-/* 1. Canvas Waves (Atmosphere) - Behind Orb */
+
+/* 1. Solid Black Base */
+.fixed-bg-solid {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #050505;
+  z-index: -5;
+}
+
+/* 2. Global Orb */
+.glow-orb {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 900px;
+  /* Bigger */
+  height: 900px;
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.5) 0%, rgba(59, 130, 246, 0.1) 60%, transparent 70%);
+  filter: blur(120px);
+  border-radius: 50%;
+  z-index: -4;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  opacity: 0.9;
+  transition: transform 0.1s linear;
+  will-change: transform;
+}
+
+/* 3. Canvas Waves */
 .fixed-bg-canvas {
   position: fixed;
   top: 0;
@@ -91,29 +124,11 @@ video {
   width: 100%;
   height: 100%;
   pointer-events: none;
-  z-index: -2;
+  z-index: -3;
   opacity: 0.4;
 }
 
-/* 2. Global Orb - Behind Content, In Front of Canvas */
-.glow-orb {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  width: 800px;
-  height: 800px;
-  background: radial-gradient(circle, rgba(59, 130, 246, 0.5) 0%, rgba(59, 130, 246, 0.15) 50%, transparent 70%);
-  filter: blur(100px);
-  border-radius: 50%;
-  z-index: -1;
-  pointer-events: none;
-  transform: translate(-50%, -50%);
-  opacity: 1;
-  transition: transform 0.1s linear;
-  will-change: transform;
-}
-
-/* 3. Noise Overlay - Topmost Layer for Texture */
+/* 4. Noise Texture (Finer Grain) */
 .noise-overlay {
   position: fixed;
   top: 0;
@@ -122,9 +137,8 @@ video {
   height: 100%;
   pointer-events: none;
   z-index: 9999;
-  opacity: 0.07;
-  /* Visible grain */
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  opacity: 0.08;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.5' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
 }
 
 /* -----------------------------------------------------------
@@ -134,6 +148,8 @@ video {
   width: 90%;
   max-width: var(--container-max);
   margin: 0 auto;
+  position: relative;
+  z-index: 10;
 }
 
 .container-wide {
@@ -143,6 +159,7 @@ video {
 .section {
   padding: var(--section-pad) 0;
   position: relative;
+  z-index: 10;
 }
 
 .mb-2 {
@@ -214,7 +231,7 @@ video {
 }
 
 /* -----------------------------------------------------------
-   ANIMATION CLASSES (SCROLL REVEAL)
+   ANIMATION CLASSES
 ----------------------------------------------------------- */
 .fade-up {
   opacity: 0;
@@ -254,15 +271,15 @@ video {
   left: 0;
   right: 0;
   height: var(--header-height);
-  z-index: 100;
+  z-index: 1000;
   display: flex;
   align-items: center;
   transition: 0.4s ease;
 }
 
 .site-header.scrolled {
-  background: rgba(5, 5, 5, 0.8);
-  backdrop-filter: blur(16px);
+  background: rgba(5, 5, 5, 0.9);
+  backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--border-subtle);
 }
 
@@ -294,7 +311,6 @@ video {
   color: white;
 }
 
-/* Mobile Toggle */
 .mobile-toggle {
   display: none;
   flex-direction: column;
@@ -326,32 +342,40 @@ video {
 .hero-video-wrap {
   position: absolute;
   inset: 0;
-  z-index: 0;
+  z-index: -2;
+  /* Under content */
 }
 
 .hero-video-el {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  opacity: 0.4;
 }
 
 .hero-overlay {
   position: absolute;
   inset: 0;
-  z-index: 1;
-  background: linear-gradient(to bottom, rgba(5, 5, 5, 0.4), rgba(5, 5, 5, 0.1) 50%, rgba(5, 5, 5, 1));
+  z-index: -1;
+  background: linear-gradient(to bottom, rgba(5, 5, 5, 0.4), rgba(5, 5, 5, 1) 90%);
 }
 
 .hero-content {
   position: relative;
-  z-index: 2;
+  z-index: 10;
   margin-top: 60px;
 }
 
+/* Hero Title - Reduced Size */
 .hero-title-box h1 {
-  font-size: clamp(3rem, 7vw, 6.5rem);
-  line-height: 1.05;
+  font-size: clamp(3rem, 6vw, 5.5rem);
+  line-height: 1.1;
   font-weight: 800;
+}
+
+/* Explicit colors */
+.text-white {
+  color: #ffffff !important;
 }
 
 .typed-highlight {
@@ -452,6 +476,73 @@ video {
 }
 
 /* -----------------------------------------------------------
+   CARDS WITH GRADIENT TOP BAR
+----------------------------------------------------------- */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--border-subtle);
+  backdrop-filter: blur(10px);
+  padding: 3rem 2rem;
+  border-radius: 8px;
+  transition: 0.3s ease;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  /* For gradient bar */
+}
+
+/* New Gradient Top Bar */
+.card-gradient-top {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 6px;
+  background: linear-gradient(90deg, #3b82f6, #60a5fa, #93c5fd, #3b82f6);
+  background-size: 200% 100%;
+  animation: gradientShift 4s linear infinite;
+}
+
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
+.glass-card:hover {
+  transform: translateY(-10px);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.icon-box {
+  color: var(--accent);
+  margin-bottom: 2rem;
+}
+
+.glass-card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.glass-card p {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--text-muted);
+}
+
+/* -----------------------------------------------------------
    INTRO
 ----------------------------------------------------------- */
 .intro-grid {
@@ -472,49 +563,6 @@ video {
   color: white;
   display: block;
   line-height: 1;
-}
-
-/* -----------------------------------------------------------
-   SERVICES
------------------------------------------------------------ */
-.services-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 2rem;
-}
-
-.glass-card {
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid var(--border-subtle);
-  backdrop-filter: blur(10px);
-  padding: 3rem 2rem;
-  border-radius: 8px;
-  transition: 0.3s ease;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-}
-
-.glass-card:hover {
-  transform: translateY(-10px);
-  background: rgba(255, 255, 255, 0.05);
-  border-color: rgba(255, 255, 255, 0.2);
-}
-
-.icon-box {
-  color: var(--accent);
-  margin-bottom: 2rem;
-}
-
-.glass-card h3 {
-  font-size: 1.5rem;
-  margin-bottom: 1rem;
-}
-
-.glass-card p {
-  font-size: 1rem;
-  line-height: 1.6;
-  color: var(--text-muted);
 }
 
 /* -----------------------------------------------------------
@@ -570,7 +618,6 @@ video {
   z-index: 20;
 }
 
-/* Fake UI */
 .app-top-bar {
   height: 60px;
   background: #f8f8f8;
@@ -619,8 +666,11 @@ video {
   display: block;
   position: relative;
   group: pointer;
+  border-radius: 8px;
+  overflow: hidden;
 }
 
+/* Rounded */
 .project-img-box {
   position: relative;
   overflow: hidden;
@@ -744,7 +794,7 @@ video {
 }
 
 /* -----------------------------------------------------------
-   FOOTER
+   FOOTER (Updated)
 ----------------------------------------------------------- */
 footer {
   padding: 4rem 0;
@@ -757,9 +807,11 @@ footer {
   align-items: center;
 }
 
+/* Bigger Logo */
 .footer-logo {
-  height: 24px;
-  opacity: 0.7;
+  height: 60px;
+  width: auto;
+  opacity: 1;
 }
 
 .footer-links a {
@@ -818,6 +870,19 @@ footer {
 @media (max-width: 600px) {
   .services-grid {
     grid-template-columns: 1fr;
+  }
+
+  .hero-title-box h1 {
+    font-size: 3rem;
+  }
+
+  .footer-inner {
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .footer-links a {
+    margin: 0 10px;
   }
 }
 
