@@ -4,9 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sueste Creative Agency | Marketing & Design Algarve</title>
-  <meta name="description"
-    content="Agência de Marketing no Algarve. Especialistas em Design Gráfico, Social Media, Web Development e Drone Media. Elevamos a sua marca.">
+  <title>Sueste Creative Agency | Algarve</title>
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -23,367 +21,200 @@
 <body>
 
   <!-- Background Elements -->
-  <canvas id="canvas-waves" style="position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;opacity:0.4;"></canvas>
-  <div class="noise-overlay"></div>
+  <canvas id="canvas-waves" class="fixed-bg"></canvas>
 
-  <!-- Navigation -->
+  <!-- Navigation (Desktop & Mobile) -->
   <header class="site-header fixed-header">
     <div class="container header-inner">
-      <a href="#hero" class="brand-link">
+      <a href="index.html" class="brand-link">
         <img src="images/logo-white-hor.png" alt="Sueste Logo" class="brand-logo">
       </a>
 
       <nav class="main-nav desktop-only">
-        <a href="#servicos" class="nav-link">Serviços</a>
-        <a href="#digital-impact" class="nav-link">Social</a>
-        <a href="#portfolio" class="nav-link">Portfólio</a>
-        <a href="#sobre" class="nav-link">Agência</a>
+        <a href="servicos.html" class="nav-link">Serviços</a>
+        <a href="portfolio.html" class="nav-link">Portfólio</a>
+        <a href="sobre.html" class="nav-link">Sobre</a>
       </nav>
 
-      <a href="#contacto" class="btn btn-primary glow-effect">Pedir Orçamento</a>
-
-      <!-- Mobile Menu Toggle -->
-      <button class="mobile-toggle" aria-label="Menu">
-        <span></span>
-        <span></span>
-      </button>
+      <div class="header-actions">
+        <a href="contacto.html" class="btn btn-primary glow-effect desktop-only">Pedir Proposta</a>
+        <button class="mobile-toggle" aria-label="Menu">
+          <span></span><span></span>
+        </button>
+      </div>
     </div>
   </header>
 
-  <!-- Mobile Nav Overlay -->
-  <div class="mobile-nav-overlay">
-    <nav class="mobile-nav-links">
-      <a href="#servicos">Serviços</a>
-      <a href="#digital-impact">Social Media</a>
-      <a href="#portfolio">Portfólio</a>
-      <a href="#sobre">A Agência</a>
-      <a href="#contacto" class="btn btn-primary">Falar Agora</a>
+  <!-- Mobile Menu Overlay -->
+  <div class="mobile-menu-overlay">
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="servicos.html">Serviços</a>
+      <a href="portfolio.html">Portfólio</a>
+      <a href="sobre.html">Sobre</a>
+      <a href="contacto.html" class="btn btn-primary mt-4">Contactar</a>
     </nav>
   </div>
 
   <main>
-    <!-- HERO SECTION -->
-    <section id="hero" class="hero-section">
-      <div class="hero-bg-video-wrapper">
-        <video autoplay muted loop playsinline class="hero-bg-video">
-          <source src="images/hero-video.mp4" type="video/mp4">
+    <!-- ORIGINAL HERO SECTION RESTORED -->
+    <section id="hero" class="hero hero-video">
+      <div class="hero-video-wrap">
+        <video id="heroVideo" class="hero-video-el" autoplay muted loop playsinline>
+          <source src="images/hero-video.mp4" type="video/mp4" />
         </video>
-        <div class="video-overlay"></div>
       </div>
+      <div class="hero-overlay"></div>
 
       <div class="container hero-content">
-        <span class="hero-label fade-in-up">Agência Criativa Full-Service</span>
-        <h1 class="hero-title fade-in-up delay-1">
-          Elevamos marcas através do <span class="text-gradient">Design</span> e da <span
-            class="text-gradient">Estratégia.</span>
-        </h1>
-        <p class="hero-subtitle fade-in-up delay-2">
-          Do Algarve para o mundo. Criamos identidades visuais fortes, sites que convertem e conteúdos que geram impacto
-          real.
-        </p>
-        <div class="hero-actions fade-in-up delay-3">
-          <a href="#servicos" class="btn btn-primary">Ver Serviços</a>
-          <a href="#portfolio" class="btn btn-outline">Ver Portfólio</a>
+        <div class="hero-left">
+          <div class="hero-title-box">
+            <h1 class="hero-typed">
+              <span class="typed-row">
+                <span id="typed-prefix" class="typed-prefix" data-text="O que move nem sempre se vê. Mas o "></span>
+                <span id="typed-slow" class="typed-slow" data-text="impacto é "></span>
+                <span id="typed-highlight" class="typed-highlight" data-text="inevitável."></span>
+                <span class="typed-caret"></span>
+              </span>
+            </h1>
+          </div>
+
+          <div class="hero-actions-box">
+            <div class="hero-pills">
+              <a class="pill-link" href="servicos.html#design">Design Gráfico</a>
+              <a class="pill-link" href="servicos.html#social">Social Media</a>
+              <a class="pill-link" href="servicos.html#web">Web Dev</a>
+              <a class="pill-link" href="servicos.html#drone">Drone Media</a>
+            </div>
+          </div>
         </div>
       </div>
 
-      <div class="scroll-indicator">
-        <span class="mouse">
-          <span class="wheel"></span>
-        </span>
-      </div>
+      <a class="scroll-indicator" href="#intro">
+        <span class="scroll-track"><span class="scroll-ball"></span></span>
+        <span class="scroll-label">EXPLORE</span>
+      </a>
     </section>
 
-    <!-- SERVICES SECTION -->
-    <section id="servicos" class="section">
-      <div class="container">
-        <div class="section-header align-center">
-          <span class="label">O Nosso Expertise</span>
-          <h2 class="section-title">Soluções 360º para a sua Marca</h2>
-          <p class="section-lead">Uma abordagem integrada para garantir consistência em todos os canais.</p>
-        </div>
-
-        <div class="grid services-grid">
-          <!-- Design -->
-          <div class="card glass service-card">
-            <div class="service-icon-wrapper">
-              <i data-lucide="palette" size="32"></i>
-            </div>
-            <h3>Design Gráfico</h3>
-            <p>Identidade visual, rebranding e design editorial. Criamos a cara da sua marca com estética apurada e
-              funcionalidade estratégica.</p>
-            <ul class="service-list">
-              <li>Logótipos & Branding</li>
-              <li>Stationery</li>
-              <li>Design Publicitário</li>
-            </ul>
-          </div>
-
-          <!-- Web -->
-          <div class="card glass service-card">
-            <div class="service-icon-wrapper">
-              <i data-lucide="code" size="32"></i>
-            </div>
-            <h3>Desenvolvimento Web</h3>
-            <p>Sites rápidos, seguros e otimizados para SEO. Do design à programação, focamos na experiência do
-              utilizador e na conversão.</p>
-            <ul class="service-list">
-              <li>Websites Institucionais</li>
-              <li>E-commerce</li>
-              <li>Landing Pages</li>
-            </ul>
-          </div>
-
-          <!-- Social -->
-          <div class="card glass service-card">
-            <div class="service-icon-wrapper">
-              <i data-lucide="smartphone" size="32"></i>
-            </div>
-            <h3>Social Media</h3>
-            <p>Gestão de redes sociais com propósito. Planeamento, criação de conteúdo e gestão de comunidade para fazer
-              a sua marca crescer.</p>
-            <ul class="service-list">
-              <li>Estratégia Digital</li>
-              <li>Criação de Conteúdo</li>
-              <li>Paid Media (Ads)</li>
-            </ul>
-          </div>
-
-          <!-- Drone -->
-          <div class="card glass service-card">
-            <div class="service-icon-wrapper">
-              <i data-lucide="aperture" size="32"></i>
-            </div>
-            <h3>Drone & Media</h3>
-            <p>Perspetivas únicas que valorizam o seu negócio. Captação de vídeo e fotografia aérea de alta resolução e
-              edição profissional.</p>
-            <ul class="service-list">
-              <li>Vídeo Promocional</li>
-              <li>Fotografia Aérea</li>
-              <li>Cobertura de Eventos</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- IPHONE SCROLL ANIMATION SECTION -->
-    <section id="digital-impact" class="section overflow-hidden">
+    <!-- INTRO SECTION (New Element) -->
+    <section id="intro" class="section">
       <div class="container grid-2-col align-center">
-        <div class="text-content">
-          <span class="label">Mobile First</span>
-          <h2 class="section-title">A sua marca na palma da mão.</h2>
+        <div class="intro-text">
+          <span class="label">A Agência</span>
+          <h2 class="section-title">Small Team. <br><span class="text-gradient">Big Impact.</span></h2>
           <p class="lead">
-            Hoje, a primeira interação com a sua marca acontece no telemóvel.
-            Garantimos que a experiência seja impecável, rápida e memorável em qualquer dispositivo.
+            Não somos uma fábrica de conteúdos. Somos parceiros estratégicos.
+            No Algarve, criamos marcas que respiram, comunicam e vendem.
           </p>
-          <ul class="feature-list">
-            <li><i data-lucide="check-circle" class="icon-primary"></i> Sites 100% Responsivos</li>
-            <li><i data-lucide="check-circle" class="icon-primary"></i> Conteúdo Vertical (Reels/TikTok)</li>
-            <li><i data-lucide="check-circle" class="icon-primary"></i> UI/UX Otimizado para Touch</li>
-          </ul>
-          <a href="#contacto" class="btn btn-primary mt-4">Otimizar a minha presença</a>
+          <a href="sobre.html" class="link-arrow mt-4">Conhecer a Sueste <i data-lucide="arrow-right"></i></a>
         </div>
-
-        <!-- Animated iPhone Container -->
-        <div class="phone-animation-container">
-          <div class="iphone-mockup" id="iphone-mockup">
-            <div class="iphone-notch"></div>
-            <div class="iphone-screen">
-              <!-- Content inside phone screen -->
-              <div class="app-header">
-                <div class="app-avatar"></div>
-                <div class="app-name-bar"></div>
-              </div>
-              <div class="app-hero"></div>
-              <div class="app-grid">
-                <div class="app-item"></div>
-                <div class="app-item"></div>
-                <div class="app-item"></div>
-                <div class="app-item"></div>
-              </div>
-            </div>
+        <div class="intro-stats glass">
+          <div class="stat-item">
+            <span class="stat-num">4+</span>
+            <span class="stat-label">Anos de Mercado</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-num">50+</span>
+            <span class="stat-label">Projetos Lançados</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-num">100%</span>
+            <span class="stat-label">Foco no Cliente</span>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- PORTFOLIO SECTION -->
-    <section id="portfolio" class="section dark-bg">
+    <!-- FEATURED SERVICES PREVIEW -->
+    <section class="section dark-bg">
       <div class="container">
         <div class="section-header">
-          <span class="label">Projetos Recentes</span>
-          <h2 class="section-title">Trabalho que fala por si</h2>
+          <div class="flex-between">
+            <h2 class="section-title">Expertise</h2>
+            <a href="servicos.html" class="btn btn-outline desktop-only">Ver Todos os Serviços</a>
+          </div>
         </div>
 
-        <div class="portfolio-grid">
-          <!-- Project 1 -->
-          <article class="project-card group">
-            <div class="project-image-wrap">
-              <div class="project-badges">
-                <span class="badge">Web</span>
-                <span class="badge">Branding</span>
-              </div>
-              <!-- Placeholder Background -->
-              <div class="project-bg" style="background: linear-gradient(45deg, #1a2a6c, #b21f1f, #fdbb2d);"></div>
-            </div>
-            <div class="project-details">
-              <h3>Desportos Náuticos Alvor</h3>
-              <p>Rebranding e plataforma de reservas online.</p>
-              <a href="#" class="link-arrow">Ver Case Study <i data-lucide="arrow-right"></i></a>
-            </div>
-          </article>
-
-          <!-- Project 2 -->
-          <article class="project-card group">
-            <div class="project-image-wrap">
-              <div class="project-badges">
-                <span class="badge">Social Media</span>
-                <span class="badge">Estratégia</span>
-              </div>
-              <div class="project-bg" style="background: linear-gradient(to right, #000428, #004e92);"></div>
-            </div>
-            <div class="project-details">
-              <h3>ICON Property</h3>
-              <p>Estratégia digital para imobiliário de luxo.</p>
-              <a href="#" class="link-arrow">Ver Case Study <i data-lucide="arrow-right"></i></a>
-            </div>
-          </article>
-
-          <!-- Project 3 -->
-          <article class="project-card group">
-            <div class="project-image-wrap">
-              <div class="project-badges">
-                <span class="badge">App Design</span>
-                <span class="badge">Institucional</span>
-              </div>
-              <div class="project-bg" style="background: linear-gradient(to right, #11998e, #38ef7d);"></div>
-            </div>
-            <div class="project-details">
-              <h3>Junta de Freguesia</h3>
-              <p>Modernização da comunicação com o cidadão.</p>
-              <a href="#" class="link-arrow">Ver Case Study <i data-lucide="arrow-right"></i></a>
-            </div>
-          </article>
+        <div class="cards-grid-4">
+          <a href="servicos.html#design" class="service-preview-card glass">
+            <i data-lucide="palette" class="icon-lg"></i>
+            <h3>Design</h3>
+            <p>Identidade & Branding</p>
+          </a>
+          <a href="servicos.html#social" class="service-preview-card glass">
+            <i data-lucide="share-2" class="icon-lg"></i>
+            <h3>Social</h3>
+            <p>Gestão & Estratégia</p>
+          </a>
+          <a href="servicos.html#web" class="service-preview-card glass">
+            <i data-lucide="monitor" class="icon-lg"></i>
+            <h3>Web</h3>
+            <p>Sites & Lojas</p>
+          </a>
+          <a href="servicos.html#drone" class="service-preview-card glass">
+            <i data-lucide="aperture" class="icon-lg"></i>
+            <h3>Media</h3>
+            <p>Foto & Vídeo</p>
+          </a>
         </div>
 
-        <div class="center-btn mt-6">
-          <a href="#" class="btn btn-outline">Ver Todos os Projetos</a>
+        <div class="mobile-only mt-4 center-text">
+          <a href="servicos.html" class="btn btn-outline">Ver Tudo</a>
         </div>
       </div>
     </section>
 
-    <!-- TESTIMONIALS (Trust) -->
-    <section class="section">
-      <div class="container small-container align-center">
-        <div class="quote-icon"><i data-lucide="quote" size="48"></i></div>
-        <h3 class="testimonial-text">
-          "A Sueste transformou completamente a nossa imagem digital. Profissionais, criativos e com uma capacidade de
-          entrega incrível."
-        </h3>
-        <div class="testimonial-author">
-          <p class="author-name">João Silva</p>
-          <p class="author-role">CEO, Desportos Náuticos Alvor</p>
+    <!-- IPHONE SCROLL SECTION (Kept as requested) -->
+    <section id="digital-mockup" class="section overflow-hidden">
+      <div class="container grid-2-col align-center">
+        <div>
+          <span class="label">Mobile First</span>
+          <h2 class="section-title">A sua marca,<br>na mão do cliente.</h2>
+          <p class="lead">Otimizamos cada pixel para a experiência mobile.</p>
+          <a href="servicos.html#web" class="btn btn-primary mt-4">Saber Mais</a>
         </div>
-      </div>
-    </section>
-
-    <!-- CONTACT SECTION -->
-    <section id="contacto" class="section contact-section">
-      <div class="container grid-2-col">
-        <div class="contact-info">
-          <span class="label">Vamos Conversar</span>
-          <h2 class="section-title">Pronto para começar?</h2>
-          <p class="lead">Tem um projeto em mente ou quer apenas tirar uma dúvida? Estamos à distância de um clique.</p>
-
-          <div class="contact-methods">
-            <div class="method">
-              <i data-lucide="mail"></i>
-              <span>hello@sueste.pt</span>
-            </div>
-            <div class="method">
-              <i data-lucide="phone"></i>
-              <span>+351 912 345 678</span>
-            </div>
-            <div class="method">
-              <i data-lucide="map-pin"></i>
-              <span>Algarve, Portugal</span>
+        <div class="phone-stage">
+          <div id="iphone-mockup" class="iphone-mockup">
+            <div class="iphone-notch"></div>
+            <div class="iphone-screen">
+              <div class="app-header"></div>
+              <div class="app-content">
+                <div class="skeleton-hero"></div>
+                <div class="skeleton-grid">
+                  <span></span><span></span><span></span><span></span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-
-        <form class="contact-form glass" action="#" method="POST">
-          <div class="form-row">
-            <div class="form-group">
-              <label for="name">Nome</label>
-              <input type="text" id="name" name="name" required>
-            </div>
-            <div class="form-group">
-              <label for="phone">Telemóvel</label>
-              <input type="tel" id="phone" name="phone">
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" required>
-          </div>
-          <div class="form-group">
-            <label for="subject">Assunto</label>
-            <select id="subject" name="subject">
-              <option value="design">Design Gráfico</option>
-              <option value="web">Website / Loja Online</option>
-              <option value="social">Gestão Redes Sociais</option>
-              <option value="drone">Drone / Vídeo</option>
-              <option value="other">Outro</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="message">Mensagem</label>
-            <textarea id="message" name="message" rows="4" required></textarea>
-          </div>
-          <button type="submit" class="btn btn-full">
-            Enviar Pedido <i data-lucide="send" size="18"></i>
-          </button>
-        </form>
       </div>
     </section>
 
   </main>
 
-  <footer class="site-footer">
-    <div class="container footer-content">
-      <div class="footer-col">
+  <footer class="site-footer section">
+    <div class="container footer-grid">
+      <div class="footer-brand">
         <img src="images/logo-white-hor.png" alt="Sueste" class="footer-logo">
-        <p class="footer-desc">Creative Agency focada em resultados reais.</p>
+        <p>Creative Agency © 2026</p>
       </div>
-      <div class="footer-col">
-        <h4>Serviços</h4>
-        <a href="#">Design Gráfico</a>
-        <a href="#">Web Development</a>
-        <a href="#">Social Media</a>
-        <a href="#">Drone Media</a>
+      <div class="footer-nav">
+        <h4>Menu</h4>
+        <a href="index.html">Home</a>
+        <a href="servicos.html">Serviços</a>
+        <a href="portfolio.html">Portfólio</a>
+        <a href="contacto.html">Contacto</a>
       </div>
-      <div class="footer-col">
+      <div class="footer-social">
         <h4>Social</h4>
         <a href="#">Instagram</a>
         <a href="#">LinkedIn</a>
-        <a href="#">Facebook</a>
       </div>
-      <div class="footer-col">
-        <h4>Legal</h4>
-        <a href="#">Privacidade</a>
-        <a href="#">Termos e Condições</a>
-      </div>
-    </div>
-    <div class="footer-bottom container">
-      <p>&copy; 2026 Sueste Creative Agency. Todos os direitos reservados.</p>
     </div>
   </footer>
 
   <script src="script.js"></script>
-  <script>
-    lucide.createIcons();
-  </script>
+  <script>lucide.createIcons();</script>
 </body>
 
 </html>

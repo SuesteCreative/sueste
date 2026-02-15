@@ -1,16 +1,17 @@
 /* 
-  Sueste Creative Agency - Professional Logic
+  Sueste Creative Agency - Logic
 */
 
 document.addEventListener("DOMContentLoaded", () => {
-    initWaves();
     initHeader();
     initMobileMenu();
+    initTypedEffect();
     initIphoneScroll();
+    initVideoFix();
 });
 
 /* -----------------------------------------------------------
-   1. Sticky Header
+   1. Header Scroll State
 ----------------------------------------------------------- */
 function initHeader() {
     const header = document.querySelector('.site-header');
@@ -28,123 +29,105 @@ function initHeader() {
 ----------------------------------------------------------- */
 function initMobileMenu() {
     const toggle = document.querySelector('.mobile-toggle');
-    const overlay = document.querySelector('.mobile-nav-overlay');
-    const links = document.querySelectorAll('.mobile-nav-links a');
+    const overlay = document.querySelector('.mobile-menu-overlay');
 
-    if (!toggle) return;
+    if (!toggle || !overlay) return;
 
     toggle.addEventListener('click', () => {
-        overlay.classList.toggle('active');
-        // Change toggle icon state here if needed
+        // Toggle active classes
+        const isActive = overlay.classList.contains('active');
+
+        if (isActive) {
+            overlay.classList.remove('active');
+            toggle.classList.remove('open');
+        } else {
+            overlay.classList.add('active');
+            toggle.classList.add('open');
+        }
     });
 
-    links.forEach(link => {
+    // Close on link click
+    overlay.querySelectorAll('a').forEach(link => {
         link.addEventListener('click', () => {
             overlay.classList.remove('active');
+            toggle.classList.remove('open');
         });
     });
 }
 
 /* -----------------------------------------------------------
-   3. iPhone Scroll Animation
-   Logic: Calculate scroll percentage of the section.
-   Move iPhone from right (translateX > 0) to center (translateX 0).
-   Reverse when scrolling up.
+   3. Hero Typed Effect (Restored Logic)
+----------------------------------------------------------- */
+function initTypedEffect() {
+    const prefixEl = document.getElementById("typed-prefix");
+    const slowEl = document.getElementById("typed-slow");
+    const hiEl = document.getElementById("typed-highlight");
+
+    if (!prefixEl) return; // Only runs if we are on the homepage
+
+    const prefix = prefixEl.getAttribute("data-text") || "";
+    const slow = slowEl.getAttribute("data-text") || "";
+    const hi = hiEl.getAttribute("data-text") || "";
+
+    prefixEl.textContent = "";
+    slowEl.textContent = "";
+    hiEl.textContent = "";
+
+    let i = 0, j = 0, k = 0;
+
+    function tick() {
+        if (i < prefix.length) {
+            i++;
+            prefixEl.textContent = prefix.slice(0, i);
+        } else if (j < slow.length) {
+            j++;
+            slowEl.textContent = slow.slice(0, j);
+        } else if (k < hi.length) {
+            k++;
+            hiEl.textContent = hi.slice(0, k);
+        } else {
+            return;
+        }
+        const speed = (j > 0 && j < slow.length) ? 150 : 50; // Slow down for middle part
+        setTimeout(tick, speed);
+    }
+
+    setTimeout(tick, 500);
+}
+
+/* -----------------------------------------------------------
+   4. iPhone Scroll Animation (Refined)
 ----------------------------------------------------------- */
 function initIphoneScroll() {
-    const section = document.getElementById('digital-impact');
     const phone = document.getElementById('iphone-mockup');
+    const section = document.getElementById('digital-mockup');
 
-    if (!section || !phone) return;
+    if (!phone || !section) return;
 
-    window.addEventListener('scroll', () => {
-        // Get section position relative to viewport
-        const rect = section.getBoundingClientRect();
-        const viewportHeight = window.innerHeight;
+    // Use IntersectionObserver for better performance than scroll event
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            // Toggle class when in view
+            if (entry.isIntersecting) {
+                phone.classList.add('in-view');
+            } else {
+                // Optional: remove class to replay animation when scrolling back up
+                // phone.classList.remove('in-view');
+            }
+        });
+    }, { threshold: 0.3 }); // Trigger when 30% visible
 
-        // Start animation when section enters viewport
-        if (rect.top < viewportHeight && rect.bottom > 0) {
-            // Calculate progress: 0 when top enters bottom of screen, 1 when it's fully visible/centered
-            // We adjust the range to make it feel responsive
-            const range = viewportHeight + rect.height;
-            const current = viewportHeight - rect.top;
-            let progress = current / range; // 0 to 1 approx
-
-            // Clamp progress
-            if (progress < 0) progress = 0;
-            if (progress > 1) progress = 1;
-
-            // Animation Logic: 
-            // Start at translateX(100%), End at translateX(0%)
-            // We want it to be fully available (0%) around center screen
-
-            // Let's map it: at progress 0.2 -> 100%, at progress 0.6 -> 0%
-            let moveX = 150 - (progress * 350);
-
-            // Clamp values so it sits at 0 or moves out
-            if (moveX < 0) moveX = 0;
-            if (moveX > 150) moveX = 150;
-
-            // Apply
-            phone.style.transform = `translateX(${moveX}%) rotateY(-15deg)`;
-        }
-    });
+    observer.observe(section);
 }
 
-
 /* -----------------------------------------------------------
-   4. Background Waves (Subtle)
+   5. Video Autoplay Fix
 ----------------------------------------------------------- */
-function initWaves() {
-    const canvas = document.getElementById('canvas-waves');
-    if (!canvas) return;
+function initVideoFix() {
+    const v = document.getElementById("heroVideo");
+    if (!v) return;
 
-    const ctx = canvas.getContext('2d');
-    let width, height;
-    let waves = [];
-
-    function resize() {
-        width = canvas.width = window.innerWidth;
-        height = canvas.height = window.innerHeight;
-    }
-
-    function init() {
-        resize();
-        waves = [];
-        for (let i = 0; i < 3; i++) {
-            waves.push({
-                y: height / 2,
-                length: 0.005 + i * 0.001,
-                amplitude: 80 + i * 20,
-                frequency: 0.01,
-                offset: i * 2,
-                speed: 0.005 + i * 0.001
-            });
-        }
-    }
-
-    function animate() {
-        ctx.clearRect(0, 0, width, height);
-
-        waves.forEach((wave, index) => {
-            ctx.beginPath();
-            for (let i = 0; i < width; i++) {
-                const y = height / 2 + Math.sin(i * wave.length + wave.offset) * wave.amplitude;
-                ctx.lineTo(i, y);
-            }
-            const grad = ctx.createLinearGradient(0, 0, width, 0);
-            grad.addColorStop(0, "rgba(97, 144, 232, 0.05)");
-            grad.addColorStop(1, "rgba(77, 154, 185, 0.05)");
-
-            ctx.strokeStyle = grad;
-            ctx.lineWidth = 1;
-            ctx.stroke();
-            wave.offset += wave.speed;
-        });
-        requestAnimationFrame(animate);
-    }
-
-    window.addEventListener('resize', resize);
-    init();
-    animate();
+    v.muted = true;
+    v.playsInline = true;
+    v.play().catch(() => { });
 }
