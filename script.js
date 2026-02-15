@@ -1,5 +1,5 @@
 /* 
-  Sueste Creative Agency - Final Premium Script
+  Sueste Creative Agency - Final Premium Script with Orb
 */
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -9,7 +9,58 @@ document.addEventListener("DOMContentLoaded", () => {
     initIphoneScroll();
     initMobileMenu();
     initScrollReveal();
+    initOrbParallax();
 });
+
+/* -----------------------------------------------------------
+   NEW: Orb Parallax & Movement
+----------------------------------------------------------- */
+function initOrbParallax() {
+    const orb = document.getElementById('glow-orb');
+    if (!orb) return;
+
+    // Variables for smooth movement
+    let mouseX = 0;
+    let mouseY = 0;
+    let targetX = 0;
+    let targetY = 0;
+
+    // Track mouse
+    document.addEventListener('mousemove', (e) => {
+        mouseX = (e.clientX - window.innerWidth / 2) * 0.1; // 10% movement influence
+        mouseY = (e.clientY - window.innerHeight / 2) * 0.1;
+    });
+
+    function animateOrb() {
+        const scrollY = window.scrollY;
+
+        // Parallax Logic:
+        // Move slightly opposite to scroll for depth (or with it).
+        // Let's make it move around based on scroll + time + mouse
+
+        const time = Date.now() * 0.001;
+
+        // Oscillate horizontally
+        const oscillationX = Math.sin(time) * 50;
+
+        // Move vertically based on scroll (Parallax factor)
+        // Moves down slower than page scroll (0.2 factor) 
+        const parallaxY = scrollY * 0.2;
+
+        // Combine inputs
+        // Current Translation = Center (-50%) + Mouse Offset + Oscillation + Parallax
+
+        const finalX = -50 + (mouseX / window.innerWidth * 100) + (oscillationX / window.innerWidth * 100);
+        // Simplified: use px for transform
+
+        orb.style.transform = `translate(calc(-50% + ${mouseX + oscillationX}px), calc(-50% + ${mouseY + parallaxY}px))`;
+
+        requestAnimationFrame(animateOrb);
+    }
+
+    animateOrb();
+}
+
 
 /* -----------------------------------------------------------
    1. Canvas Waves (Atmosphere)

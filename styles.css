@@ -1,5 +1,5 @@
 /* 
-  SUESTE CREATIVE AGENCY - V3 (ANIMATED & WIDER)
+  SUESTE CREATIVE AGENCY - V3.5 (DYNAMIC ORB)
 */
 
 :root {
@@ -91,8 +91,8 @@ video {
   height: 100%;
   pointer-events: none;
   z-index: -1;
-  opacity: 0.3;
-  /* Subtle waves */
+  opacity: 0.2;
+  /* Waves behind everything */
 }
 
 .noise-overlay {
@@ -105,6 +105,42 @@ video {
   z-index: 90;
   opacity: 0.03;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* THE NEW GLOBAL ORB */
+.glow-orb {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 700px;
+  height: 700px;
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.4) 0%, rgba(59, 130, 246, 0.1) 40%, transparent 70%);
+  filter: blur(80px);
+  border-radius: 50%;
+  z-index: -1;
+  /* Behind content but potentially in front of canvas */
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  /* Centered initially */
+  opacity: 0.7;
+  transition: transform 0.2s linear;
+  /* Smooth movement for JS */
+  will-change: transform;
+}
+
+/* Animation mixin for idle drift if JS fails */
+@keyframes float {
+  0% {
+    transform: translate(-50%, -50%) translateY(0px);
+  }
+
+  50% {
+    transform: translate(-50%, -50%) translateY(20px);
+  }
+
+  100% {
+    transform: translate(-50%, -50%) translateY(0px);
+  }
 }
 
 /* -----------------------------------------------------------
@@ -454,37 +490,8 @@ video {
   line-height: 1;
 }
 
-.intro-visual {
-  height: 400px;
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.abstract-shape {
-  width: 200px;
-  height: 200px;
-  background: radial-gradient(circle, var(--accent) 0%, transparent 70%);
-  opacity: 0.4;
-  filter: blur(50px);
-  animation: pulse 5s ease-in-out infinite alternate;
-}
-
-@keyframes pulse {
-  0% {
-    opacity: 0.2;
-    transform: scale(0.8);
-  }
-
-  100% {
-    opacity: 0.5;
-    transform: scale(1.2);
-  }
-}
-
 /* -----------------------------------------------------------
-   SERVICES (NEW GLASS CARDS)
+   SERVICES
 ----------------------------------------------------------- */
 .services-grid {
   display: grid;
