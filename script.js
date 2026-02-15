@@ -1,58 +1,16 @@
 /* 
-  Sueste Creative Agency - Final Scripts
+  Sueste Creative Agency - Premium Script
 */
 
 document.addEventListener("DOMContentLoaded", () => {
-    initHeader();
-    initMobileMenu();
     initTypedEffect();
+    initHeader();
     initIphoneScroll();
-    initVideoFix();
-    initSmoothScroll();
+    initMobileMenu();
 });
 
 /* -----------------------------------------------------------
-   1. Header State
------------------------------------------------------------ */
-function initHeader() {
-    const header = document.querySelector('.site-header');
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-            header.classList.add('scrolled');
-        } else {
-            header.classList.remove('scrolled');
-        }
-    });
-}
-
-/* -----------------------------------------------------------
-   2. Mobile Menu
------------------------------------------------------------ */
-function initMobileMenu() {
-    const toggle = document.querySelector('.mobile-toggle');
-    const overlay = document.querySelector('.mobile-menu-overlay');
-
-    if (!toggle || !overlay) return;
-
-    const closeMenu = () => {
-        overlay.classList.remove('active');
-    };
-
-    toggle.addEventListener('click', () => {
-        if (overlay.classList.contains('active')) {
-            closeMenu();
-        } else {
-            overlay.classList.add('active');
-        }
-    });
-
-    overlay.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', closeMenu);
-    });
-}
-
-/* -----------------------------------------------------------
-   3. Hero Typed Effect
+   1. Typed Effect (Hero)
 ----------------------------------------------------------- */
 function initTypedEffect() {
     const prefixEl = document.getElementById("typed-prefix");
@@ -84,68 +42,103 @@ function initTypedEffect() {
         } else {
             return;
         }
-        const speed = (j > 0 && j < slow.length) ? 120 : 50;
+        const speed = (j > 0 && j < slow.length) ? 140 : 40;
         setTimeout(tick, speed);
     }
 
-    setTimeout(tick, 500);
+    setTimeout(tick, 800);
 }
 
 /* -----------------------------------------------------------
-   4. iPhone Animation (Scroll Trigger)
+   2. Header Scroll Effect
+----------------------------------------------------------- */
+function initHeader() {
+    const header = document.querySelector('.site-header');
+    const heroH = window.innerHeight - 100;
+
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+    });
+}
+
+/* -----------------------------------------------------------
+   3. iPhone Scroll Animation
+   Logic: Calculate scroll percentage ONLY when section is visible
 ----------------------------------------------------------- */
 function initIphoneScroll() {
     const phone = document.getElementById('iphone-mockup');
-    const section = document.getElementById('mobile-first');
+    const section = document.getElementById('mobile');
 
     if (!phone || !section) return;
 
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            // Only animate on desktop if width > 900, else it's static via CSS
+    function update() {
+        // Check if section is in viewport
+        const rect = section.getBoundingClientRect();
+        const windowH = window.innerHeight;
+
+        // Start range: Section top enters bottom of screen
+        // End range: Section bottom leaves top of screen
+
+        // We want the phone to be at 0% translation (centered) when the section is centered
+        // It starts at 120% (right off screen)
+
+        const triggerPoint = windowH * 0.8;
+        const isVisible = rect.top < triggerPoint && rect.bottom > 0;
+
+        if (isVisible) {
+            // Calculate a progress value 0 to 1
+            // 0 = just entered, 1 = fully centered/scrolled
+
+            // Simpler approach: Map scroll position to translation
+            // When rect.top is at windowH (just entering) -> 120%
+            // When rect.top is at 0 (top of screen) -> 0%
+
+            let percentage = rect.top / windowH;
+            // percentage goes from 1 (bottom) to 0 (top)
+
+            let translate = percentage * 120;
+
+            // Constraints
+            if (translate < 0) translate = 0; // Don't go past center leftwards
+            if (translate > 120) translate = 120; // Don't go past right
+
+            // Enhance: Add negative rotation as it comes in
+            const rotate = -20 + ((1 - percentage) * 20); // Goes from -20 to 0
+
+            // Only apply on desktop
             if (window.innerWidth > 900) {
-                if (entry.isIntersecting) {
-                    phone.classList.add('in-view');
-                }
+                phone.style.transform = `translateX(${translate}%) rotateY(-20deg)`;
+            } else {
+                phone.style.transform = 'none';
             }
-        });
-    }, { threshold: 0.3 });
+        }
+    }
 
-    observer.observe(section);
+    window.addEventListener('scroll', () => {
+        requestAnimationFrame(update);
+    });
 }
 
 /* -----------------------------------------------------------
-   5. Video Fix
+   4. Mobile Menu Toggle
 ----------------------------------------------------------- */
-function initVideoFix() {
-    const v = document.getElementById("heroVideo");
-    if (!v) return;
-    v.muted = true;
-    v.playsInline = true;
-    v.play().catch(() => { });
-}
+function initMobileMenu() {
+    const btn = document.querySelector('.mobile-toggle');
+    const ov = document.querySelector('.mobile-nav-overlay');
 
-/* -----------------------------------------------------------
-   6. Smooth Scroll
------------------------------------------------------------ */
-function initSmoothScroll() {
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const targetId = this.getAttribute('href');
-            if (targetId === '#' || targetId === '') return;
-            const target = document.querySelector(targetId);
-            if (target) {
-                // Offset for fixed header
-                const headerOffset = 80;
-                const elementPosition = target.getBoundingClientRect().top;
-                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+    if (!btn) return;
 
-                window.scrollTo({
-                    top: offsetPosition,
-                    behavior: "smooth"
-                });
-            }
+    btn.addEventListener('click', () => {
+        ov.classList.toggle('active');
+    });
+
+    ov.querySelectorAll('a').forEach(a => {
+        a.addEventListener('click', () => {
+            ov.classList.remove('active');
         });
     });
 }
