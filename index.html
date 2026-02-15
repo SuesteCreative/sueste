@@ -21,23 +21,27 @@
 <body>
 
   <!-- Background Elements -->
-  <canvas id="canvas-waves" class="fixed-bg"></canvas>
+  <div class="fixed-bg">
+    <canvas id="canvas-waves"></canvas>
+    <div class="noise-overlay"></div>
+  </div>
 
-  <!-- Navigation (Desktop & Mobile) -->
+  <!-- Navigation -->
   <header class="site-header fixed-header">
     <div class="container header-inner">
-      <a href="index.html" class="brand-link">
+      <a href="#hero" class="brand-link">
         <img src="images/logo-white-hor.png" alt="Sueste Logo" class="brand-logo">
       </a>
 
       <nav class="main-nav desktop-only">
-        <a href="servicos.html" class="nav-link">Serviços</a>
-        <a href="portfolio.html" class="nav-link">Portfólio</a>
-        <a href="sobre.html" class="nav-link">Sobre</a>
+        <a href="#sobre" class="nav-link">Agência</a>
+        <a href="#servicos" class="nav-link">Serviços</a>
+        <a href="#portfolio" class="nav-link">Portfólio</a>
+        <a href="#processo" class="nav-link">Processo</a>
       </nav>
 
       <div class="header-actions">
-        <a href="contacto.html" class="btn btn-primary glow-effect desktop-only">Pedir Proposta</a>
+        <a href="#contacto" class="btn btn-primary glow-effect desktop-only">Pedir Proposta</a>
         <button class="mobile-toggle" aria-label="Menu">
           <span></span><span></span>
         </button>
@@ -48,16 +52,16 @@
   <!-- Mobile Menu Overlay -->
   <div class="mobile-menu-overlay">
     <nav>
-      <a href="index.html">Home</a>
-      <a href="servicos.html">Serviços</a>
-      <a href="portfolio.html">Portfólio</a>
-      <a href="sobre.html">Sobre</a>
-      <a href="contacto.html" class="btn btn-primary mt-4">Contactar</a>
+      <a href="#hero">Home</a>
+      <a href="#sobre">Agência</a>
+      <a href="#servicos">Serviços</a>
+      <a href="#portfolio">Portfólio</a>
+      <a href="#contacto" class="btn btn-primary mt-4">Contactar</a>
     </nav>
   </div>
 
   <main>
-    <!-- ORIGINAL HERO SECTION RESTORED -->
+    <!-- 1. HERO SECTION (ORIGINAL) -->
     <section id="hero" class="hero hero-video">
       <div class="hero-video-wrap">
         <video id="heroVideo" class="hero-video-el" autoplay muted loop playsinline>
@@ -81,108 +85,137 @@
 
           <div class="hero-actions-box">
             <div class="hero-pills">
-              <a class="pill-link" href="servicos.html#design">Design Gráfico</a>
-              <a class="pill-link" href="servicos.html#social">Social Media</a>
-              <a class="pill-link" href="servicos.html#web">Web Dev</a>
-              <a class="pill-link" href="servicos.html#drone">Drone Media</a>
+              <a class="pill-link" href="#servicos">Design Gráfico</a>
+              <a class="pill-link" href="#servicos">Social Media</a>
+              <a class="pill-link" href="#servicos">Web Dev</a>
+              <a class="pill-link" href="#servicos">Drone Media</a>
             </div>
           </div>
         </div>
       </div>
 
-      <a class="scroll-indicator" href="#intro">
+      <a class="scroll-indicator" href="#sobre">
         <span class="scroll-track"><span class="scroll-ball"></span></span>
         <span class="scroll-label">EXPLORE</span>
       </a>
     </section>
 
-    <!-- INTRO SECTION (New Element) -->
-    <section id="intro" class="section">
+    <!-- 2. ABOUT / INTRO SECTION -->
+    <section id="sobre" class="section">
       <div class="container grid-2-col align-center">
         <div class="intro-text">
-          <span class="label">A Agência</span>
-          <h2 class="section-title">Small Team. <br><span class="text-gradient">Big Impact.</span></h2>
+          <span class="label">Quem Somos</span>
+          <h2 class="section-title">Nascidos no Algarve.<br><span class="text-gradient">Criados para o Mundo.</span>
+          </h2>
           <p class="lead">
-            Não somos uma fábrica de conteúdos. Somos parceiros estratégicos.
-            No Algarve, criamos marcas que respiram, comunicam e vendem.
+            A Sueste é uma agência criativa que combina estratégia, design e tecnologia.
+            Não fazemos apenas "coisas bonitas". Criamos ferramentas de negócio que comunicam, convertem e perduram.
           </p>
-          <a href="sobre.html" class="link-arrow mt-4">Conhecer a Sueste <i data-lucide="arrow-right"></i></a>
+          <ul class="feature-list mt-4">
+            <li><i data-lucide="check-circle" class="icon-primary"></i> Abordagem Estratégica</li>
+            <li><i data-lucide="check-circle" class="icon-primary"></i> Design Premium</li>
+            <li><i data-lucide="check-circle" class="icon-primary"></i> Foco em Resultados</li>
+          </ul>
         </div>
         <div class="intro-stats glass">
           <div class="stat-item">
             <span class="stat-num">4+</span>
-            <span class="stat-label">Anos de Mercado</span>
+            <span class="stat-label">Anos de Experiência</span>
           </div>
           <div class="stat-item">
             <span class="stat-num">50+</span>
-            <span class="stat-label">Projetos Lançados</span>
+            <span class="stat-label">Projetos Entregues</span>
           </div>
           <div class="stat-item">
             <span class="stat-num">100%</span>
-            <span class="stat-label">Foco no Cliente</span>
+            <span class="stat-label">Dedicação</span>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- FEATURED SERVICES PREVIEW -->
-    <section class="section dark-bg">
+    <!-- 3. SERVICES SECTION (Grid Completa) -->
+    <section id="servicos" class="section dark-bg">
       <div class="container">
-        <div class="section-header">
-          <div class="flex-between">
-            <h2 class="section-title">Expertise</h2>
-            <a href="servicos.html" class="btn btn-outline desktop-only">Ver Todos os Serviços</a>
+        <div class="section-header align-center">
+          <span class="label">O Nosso Expertise</span>
+          <h2 class="section-title">Soluções 360º</h2>
+          <p class="section-lead">Tudo o que a sua marca precisa para se destacar no mercado digital e físico.</p>
+        </div>
+
+        <div class="services-grid">
+          <!-- Card 1 -->
+          <div class="service-card glass">
+            <div class="icon-box"><i data-lucide="palette" size="32"></i></div>
+            <h3>Branding & Design</h3>
+            <p>Identidade visual, logótipos e design editorial. Criamos a cara da sua marca com estética apurada.</p>
+            <ul class="service-tags">
+              <li>Logótipos</li>
+              <li>Rebranding</li>
+              <li>Estacionário</li>
+            </ul>
           </div>
-        </div>
-
-        <div class="cards-grid-4">
-          <a href="servicos.html#design" class="service-preview-card glass">
-            <i data-lucide="palette" class="icon-lg"></i>
-            <h3>Design</h3>
-            <p>Identidade & Branding</p>
-          </a>
-          <a href="servicos.html#social" class="service-preview-card glass">
-            <i data-lucide="share-2" class="icon-lg"></i>
-            <h3>Social</h3>
-            <p>Gestão & Estratégia</p>
-          </a>
-          <a href="servicos.html#web" class="service-preview-card glass">
-            <i data-lucide="monitor" class="icon-lg"></i>
-            <h3>Web</h3>
-            <p>Sites & Lojas</p>
-          </a>
-          <a href="servicos.html#drone" class="service-preview-card glass">
-            <i data-lucide="aperture" class="icon-lg"></i>
-            <h3>Media</h3>
-            <p>Foto & Vídeo</p>
-          </a>
-        </div>
-
-        <div class="mobile-only mt-4 center-text">
-          <a href="servicos.html" class="btn btn-outline">Ver Tudo</a>
+          <!-- Card 2 -->
+          <div class="service-card glass">
+            <div class="icon-box"><i data-lucide="monitor" size="32"></i></div>
+            <h3>Web Development</h3>
+            <p>Sites rápidos, seguros e otimizados para SEO. Lojas online e landing pages que convertem visitantes em
+              clientes.</p>
+            <ul class="service-tags">
+              <li>Websites</li>
+              <li>Lojas Online</li>
+              <li>Landing Pages</li>
+            </ul>
+          </div>
+          <!-- Card 3 -->
+          <div class="service-card glass">
+            <div class="icon-box"><i data-lucide="smartphone" size="32"></i></div>
+            <h3>Social Media</h3>
+            <p>Gestão de redes sociais com propósito. Planeamento estratégico, criação de conteúdo e gestão de
+              comunidade.</p>
+            <ul class="service-tags">
+              <li>Estratégia</li>
+              <li>Conteúdo</li>
+              <li>Paid Ads</li>
+            </ul>
+          </div>
+          <!-- Card 4 -->
+          <div class="service-card glass">
+            <div class="icon-box"><i data-lucide="aperture" size="32"></i></div>
+            <h3>Drone & Media</h3>
+            <p>Perspetivas únicas que valorizam o seu negócio. Vídeo e fotografia aérea de alta resolução e edição
+              profissional.</p>
+            <ul class="service-tags">
+              <li>Vídeo 4K</li>
+              <li>Fotografia</li>
+              <li>Eventos</li>
+            </ul>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- IPHONE SCROLL SECTION (Kept as requested) -->
-    <section id="digital-mockup" class="section overflow-hidden">
+    <!-- 4. IPHONE ANIMATION SECTION -->
+    <section id="mobile-first" class="section overflow-hidden">
       <div class="container grid-2-col align-center">
         <div>
           <span class="label">Mobile First</span>
-          <h2 class="section-title">A sua marca,<br>na mão do cliente.</h2>
-          <p class="lead">Otimizamos cada pixel para a experiência mobile.</p>
-          <a href="servicos.html#web" class="btn btn-primary mt-4">Saber Mais</a>
+          <h2 class="section-title">A sua marca,<br>na palma da mão.</h2>
+          <p class="lead">
+            Hoje, a primeira interação com a sua marca acontece no telemóvel.
+            Garantimos uma experiência impecável, rápida e responsive.
+          </p>
+          <a href="#contacto" class="btn btn-primary mt-4">Otimizar a minha presença</a>
         </div>
         <div class="phone-stage">
+          <!-- Improved JS Animation Target -->
           <div id="iphone-mockup" class="iphone-mockup">
             <div class="iphone-notch"></div>
             <div class="iphone-screen">
               <div class="app-header"></div>
-              <div class="app-content">
-                <div class="skeleton-hero"></div>
-                <div class="skeleton-grid">
-                  <span></span><span></span><span></span><span></span>
-                </div>
+              <div class="app-hero-skeleton"></div>
+              <div class="app-grid-skeleton">
+                <span></span><span></span><span></span><span></span>
               </div>
             </div>
           </div>
@@ -190,25 +223,151 @@
       </div>
     </section>
 
+    <!-- 5. PORTFOLIO SECTION -->
+    <section id="portfolio" class="section dark-bg">
+      <div class="container">
+        <div class="section-header">
+          <span class="label">Trabalho</span>
+          <h2 class="section-title">Projetos Selecionados</h2>
+        </div>
+
+        <div class="portfolio-grid">
+          <!-- Project 1 -->
+          <article class="project-item group">
+            <div class="project-visual glass">
+              <div class="project-overlay"><span class="project-cat">Branding / Web</span></div>
+              <div class="placeholder-visual">DNA</div>
+            </div>
+            <div class="project-info">
+              <h3>Desportos Náuticos</h3>
+              <p>Rebranding completo e plataforma de reservas para líder de mercado no Algarve.</p>
+              <a href="#" class="link-arrow">Ver Case Study <i data-lucide="arrow-right"></i></a>
+            </div>
+          </article>
+          <!-- Project 2 -->
+          <article class="project-item group">
+            <div class="project-visual glass">
+              <div class="project-overlay"><span class="project-cat">Estratégia</span></div>
+              <div class="placeholder-visual">ICON</div>
+            </div>
+            <div class="project-info">
+              <h3>ICON Property</h3>
+              <p>Estratégia de posicionamento e consultoria digital para imobiliário de luxo.</p>
+              <a href="#" class="link-arrow">Ver Case Study <i data-lucide="arrow-right"></i></a>
+            </div>
+          </article>
+          <!-- Project 3 -->
+          <article class="project-item group">
+            <div class="project-visual glass">
+              <div class="project-overlay"><span class="project-cat">Institucional</span></div>
+              <div class="placeholder-visual">JFF</div>
+            </div>
+            <div class="project-info">
+              <h3>Junta de Freguesia</h3>
+              <p>Modernização da comunicação autárquica e aplicações ao cidadão.</p>
+              <a href="#" class="link-arrow">Ver Case Study <i data-lucide="arrow-right"></i></a>
+            </div>
+          </article>
+        </div>
+
+        <div class="center-btn mt-6">
+          <a href="#" class="btn btn-outline">Ver Portfólio Completo</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. PROCESS SECTION -->
+    <section id="processo" class="section">
+      <div class="container">
+        <div class="section-header align-center">
+          <span class="label">Método</span>
+          <h2 class="section-title">Como Trabalhamos</h2>
+        </div>
+        <div class="process-steps">
+          <div class="step glass">
+            <span class="step-num">01</span>
+            <h3>Imersão</h3>
+            <p>Mergulhamos no seu universo para entender o problema.</p>
+          </div>
+          <div class="step glass">
+            <span class="step-num">02</span>
+            <h3>Estratégia</h3>
+            <p>Definimos o caminho, os canais e a mensagem.</p>
+          </div>
+          <div class="step glass">
+            <span class="step-num">03</span>
+            <h3>Criação</h3>
+            <p>Design, desenvolvimento e produção de conteúdos.</p>
+          </div>
+          <div class="step glass">
+            <span class="step-num">04</span>
+            <h3>Entrega</h3>
+            <p>Lançamento, análise de resultados e otimização.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. CONTACT SECTION -->
+    <section id="contacto" class="section dark-bg">
+      <div class="container small-container">
+        <div class="section-header align-center">
+          <span class="label">Contacto</span>
+          <h2 class="section-title">Vamos conversas?</h2>
+          <p class="section-lead">Conte-nos sobre o seu projeto. Respondemos em 24h.</p>
+        </div>
+
+        <form class="contact-form glass" action="#" method="POST">
+          <div class="form-row">
+            <div class="form-group">
+              <label>Nome</label>
+              <input type="text" name="name" required>
+            </div>
+            <div class="form-group">
+              <label>Email</label>
+              <input type="email" name="email" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Assunto</label>
+            <select name="subject">
+              <option>Pedir Orçamento</option>
+              <option>Dúvida Geral</option>
+              <option>Parceria</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Mensagem</label>
+            <textarea name="message" rows="4" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-full">Enviar Mensagem <i data-lucide="send" size="18"></i></button>
+        </form>
+
+        <div class="contact-direct align-center mt-4">
+          <p>Ou envie email para <a href="mailto:hello@sueste.pt" class="text-link">hello@sueste.pt</a></p>
+        </div>
+      </div>
+    </section>
+
   </main>
 
-  <footer class="site-footer section">
-    <div class="container footer-grid">
-      <div class="footer-brand">
+  <footer class="site-footer">
+    <div class="container footer-content">
+      <div class="footer-col">
         <img src="images/logo-white-hor.png" alt="Sueste" class="footer-logo">
-        <p>Creative Agency © 2026</p>
+        <p class="footer-desc">Creative Agency © 2026</p>
       </div>
-      <div class="footer-nav">
+      <div class="footer-col">
         <h4>Menu</h4>
-        <a href="index.html">Home</a>
-        <a href="servicos.html">Serviços</a>
-        <a href="portfolio.html">Portfólio</a>
-        <a href="contacto.html">Contacto</a>
+        <a href="#sobre">Agência</a>
+        <a href="#servicos">Serviços</a>
+        <a href="#portfolio">Portfólio</a>
       </div>
-      <div class="footer-social">
+      <div class="footer-col">
         <h4>Social</h4>
         <a href="#">Instagram</a>
         <a href="#">LinkedIn</a>
+        <a href="#">Behance</a>
       </div>
     </div>
   </footer>

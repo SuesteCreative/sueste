@@ -1,5 +1,5 @@
 /* 
-  Sueste Creative Agency - Logic
+  Sueste Creative Agency - Final Scripts
 */
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -8,10 +8,11 @@ document.addEventListener("DOMContentLoaded", () => {
     initTypedEffect();
     initIphoneScroll();
     initVideoFix();
+    initSmoothScroll();
 });
 
 /* -----------------------------------------------------------
-   1. Header Scroll State
+   1. Header State
 ----------------------------------------------------------- */
 function initHeader() {
     const header = document.querySelector('.site-header');
@@ -33,37 +34,32 @@ function initMobileMenu() {
 
     if (!toggle || !overlay) return;
 
-    toggle.addEventListener('click', () => {
-        // Toggle active classes
-        const isActive = overlay.classList.contains('active');
+    const closeMenu = () => {
+        overlay.classList.remove('active');
+    };
 
-        if (isActive) {
-            overlay.classList.remove('active');
-            toggle.classList.remove('open');
+    toggle.addEventListener('click', () => {
+        if (overlay.classList.contains('active')) {
+            closeMenu();
         } else {
             overlay.classList.add('active');
-            toggle.classList.add('open');
         }
     });
 
-    // Close on link click
     overlay.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', () => {
-            overlay.classList.remove('active');
-            toggle.classList.remove('open');
-        });
+        link.addEventListener('click', closeMenu);
     });
 }
 
 /* -----------------------------------------------------------
-   3. Hero Typed Effect (Restored Logic)
+   3. Hero Typed Effect
 ----------------------------------------------------------- */
 function initTypedEffect() {
     const prefixEl = document.getElementById("typed-prefix");
     const slowEl = document.getElementById("typed-slow");
     const hiEl = document.getElementById("typed-highlight");
 
-    if (!prefixEl) return; // Only runs if we are on the homepage
+    if (!prefixEl) return;
 
     const prefix = prefixEl.getAttribute("data-text") || "";
     const slow = slowEl.getAttribute("data-text") || "";
@@ -88,7 +84,7 @@ function initTypedEffect() {
         } else {
             return;
         }
-        const speed = (j > 0 && j < slow.length) ? 150 : 50; // Slow down for middle part
+        const speed = (j > 0 && j < slow.length) ? 120 : 50;
         setTimeout(tick, speed);
     }
 
@@ -96,38 +92,60 @@ function initTypedEffect() {
 }
 
 /* -----------------------------------------------------------
-   4. iPhone Scroll Animation (Refined)
+   4. iPhone Animation (Scroll Trigger)
 ----------------------------------------------------------- */
 function initIphoneScroll() {
     const phone = document.getElementById('iphone-mockup');
-    const section = document.getElementById('digital-mockup');
+    const section = document.getElementById('mobile-first');
 
     if (!phone || !section) return;
 
-    // Use IntersectionObserver for better performance than scroll event
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
-            // Toggle class when in view
-            if (entry.isIntersecting) {
-                phone.classList.add('in-view');
-            } else {
-                // Optional: remove class to replay animation when scrolling back up
-                // phone.classList.remove('in-view');
+            // Only animate on desktop if width > 900, else it's static via CSS
+            if (window.innerWidth > 900) {
+                if (entry.isIntersecting) {
+                    phone.classList.add('in-view');
+                }
             }
         });
-    }, { threshold: 0.3 }); // Trigger when 30% visible
+    }, { threshold: 0.3 });
 
     observer.observe(section);
 }
 
 /* -----------------------------------------------------------
-   5. Video Autoplay Fix
+   5. Video Fix
 ----------------------------------------------------------- */
 function initVideoFix() {
     const v = document.getElementById("heroVideo");
     if (!v) return;
-
     v.muted = true;
     v.playsInline = true;
     v.play().catch(() => { });
+}
+
+/* -----------------------------------------------------------
+   6. Smooth Scroll
+----------------------------------------------------------- */
+function initSmoothScroll() {
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            if (targetId === '#' || targetId === '') return;
+            const target = document.querySelector(targetId);
+            if (target) {
+                // Offset for fixed header
+                const headerOffset = 80;
+                const elementPosition = target.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: "smooth"
+                });
+            }
+        });
+    });
 }
