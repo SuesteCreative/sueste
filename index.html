@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="pt-PT" class="smooth-scroll">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sueste Creative Agency | Algarve</title>
+  <meta name="description"
+    content="Sueste - Creative Agency. Movimento com intenção. Design, Estratégia e Media no Algarve.">
+
+  <!-- Fonts: Outfit for Headings, Inter for Body -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Outfit:wght@500;700;900&display=swap"
+    rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="images/fav-icon.png">
+</head>
+
+<body>
+
+  <!-- Background Elements -->
+  <div class="noise-overlay"></div>
+  <canvas id="canvas-waves"></canvas>
+
+  <!-- Navigation -->
+  <header class="site-header fixed-header glass">
+    <div class="container header-inner">
+      <a href="#" class="brand-link">
+        <img src="images/logo-white-hor.png" alt="Sueste Logo" class="brand-logo">
+      </a>
+
+      <nav class="main-nav desktop-only">
+        <a href="#servicos" class="nav-link">Serviços</a>
+        <a href="#portfolio" class="nav-link">Portfólio</a>
+        <a href="#processo" class="nav-link">Processo</a>
+        <a href="#sobre" class="nav-link">Sobre</a>
+      </nav>
+
+      <a href="#contacto" class="btn btn-primary glow-effect">Falar Connosco</a>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero Section -->
+    <section id="hero" class="hero-section">
+      <div class="hero-bg-video-wrapper">
+        <video autoplay muted loop playsinline class="hero-bg-video">
+          <source src="images/hero-video.mp4" type="video/mp4">
+        </video>
+        <div class="video-overlay"></div>
+      </div>
+
+      <div class="container hero-content">
+        <h1 class="hero-title">
+          Movimento que cria <br>
+          <span class="text-gradient">Impacto.</span>
+        </h1>
+        <p class="hero-subtitle">
+          Direção criativa, estratégia digital e produção visual.
+          Elevamos marcas através de forças invisíveis e resultados visíveis.
+        </p>
+      </div>
+
+      <div class="scroll-indicator">
+        <span class="mouse">
+          <span class="wheel"></span>
+        </span>
+      </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="servicos" class="section">
+      <div class="container">
+        <div class="section-header">
+          <span class="label">Expertise</span>
+          <h2 class="section-title">O que nos move</h2>
+        </div>
+
+        <div class="grid services-grid">
+          <div class="card glass service-card">
+            <div class="icon-box">01</div>
+            <h3>Branding & Identidade</h3>
+            <p>Construção de marcas com alma. Logótipos, sistemas visuais e guias de estilo que definem quem você é.</p>
+          </div>
+          <div class="card glass service-card">
+            <div class="icon-box">02</div>
+            <h3>Web & Digital</h3>
+            <p>Websites imersivos e funcionais. Experiências digitais desenhadas para performance e conversão.</p>
+          </div>
+          <div class="card glass service-card">
+            <div class="icon-box">03</div>
+            <h3>Social & Conteúdo</h3>
+            <p>Estratégia de redes sociais e criação de conteúdo que gera diálogo e constrói comunidades.</p>
+          </div>
+          <div class="card glass service-card">
+            <div class="icon-box">04</div>
+            <h3>Drone & Media</h3>
+            <p>Produção audiovisual de alto nível. Filmagens de drone e fotografia que captam novas perspetivas.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="section">
+      <div class="container">
+        <div class="section-header">
+          <span class="label">Trabalho</span>
+          <h2 class="section-title">Projetos Selecionados</h2>
+        </div>
+
+        <div class="portfolio-grid">
+          <!-- Project 1 -->
+          <article class="project-item group">
+            <div class="project-visual glass">
+              <div class="project-overlay">
+                <span class="project-cat">Branding / Web</span>
+              </div>
+              <!-- Placeholder for project image -->
+              <div class="placeholder-visual">DNA</div>
+            </div>
+            <div class="project-info">
+              <h3>Desportos Náuticos</h3>
+              <p>Rebranding completo e plataforma digital de reservas para líder de mercado no Algarve.</p>
+            </div>
+          </article>
+
+          <!-- Project 2 -->
+          <article class="project-item group">
+            <div class="project-visual glass">
+              <div class="project-overlay">
+                <span class="project-cat">Estratégia / Media</span>
+              </div>
+              <div class="placeholder-visual">ICON</div>
+            </div>
+            <div class="project-info">
+              <h3>ICON Property</h3>
+              <p>Estratégia de posicionamento para o setor imobiliário de luxo.</p>
+            </div>
+          </article>
+
+          <!-- Project 3 -->
+          <article class="project-item group">
+            <div class="project-visual glass">
+              <div class="project-overlay">
+                <span class="project-cat">Institucional / App</span>
+              </div>
+              <div class="placeholder-visual">JFF</div>
+            </div>
+            <div class="project-info">
+              <h3>Junta de Freguesia</h3>
+              <p>Modernização da comunicação autárquica e aplicações ao cidadão.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Process Section -->
+    <section id="processo" class="section">
+      <div class="container">
+        <div class="section-header align-center">
+          <span class="label">Método</span>
+          <h2 class="section-title">Como trabalhamos</h2>
+        </div>
+
+        <div class="process-steps">
+          <div class="step">
+            <span class="step-number">01</span>
+            <h4>Imersão</h4>
+            <p>Mergulhamos no seu universo para entender o problema e definir a direção.</p>
+          </div>
+          <div class="step-connector"></div>
+          <div class="step">
+            <span class="step-number">02</span>
+            <h4>Criação</h4>
+            <p>Exploração visual e estratégica. Transformamos ideias em ativos tangíveis.</p>
+          </div>
+          <div class="step-connector"></div>
+          <div class="step">
+            <span class="step-number">03</span>
+            <h4>Entrega</h4>
+            <p>Refinamento final e implementação. O seu projeto ganha vida.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="sobre" class="section dark-bg">
+      <div class="container grid-2-col">
+        <div class="about-text">
+          <span class="label">Sobre Nós</span>
+          <h2 class="title-lg">Sueste.</h2>
+          <p class="lead">
+            Inspirados pelo vento que sopra do sudeste, trazendo calor e mudança de marés.
+          </p>
+          <p>
+            Somos uma agência focada no detalhe. Acreditamos que o design não é apenas estético, é estratégico.
+            No Algarve, criamos para o mundo, com uma visão limpa, moderna e intemporal.
+          </p>
+        </div>
+        <div class="about-visual glass">
+          <!-- Abstract representation of wind/waves -->
+          <div class="abstract-circle"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contacto" class="section">
+      <div class="container small-container">
+        <div class="section-header align-center">
+          <span class="label">Contacto</span>
+          <h2 class="section-title">Vamos criar impacto?</h2>
+          <p>Conte-nos sobre o seu projeto.</p>
+        </div>
+
+        <form class="contact-form glass" action="#" method="POST">
+          <div class="form-group">
+            <label for="name">Nome</label>
+            <input type="text" id="name" name="name" placeholder="O seu nome" required>
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="email@exemplo.com" required>
+          </div>
+          <div class="form-group">
+            <label for="message">Mensagem</label>
+            <textarea id="message" name="message" rows="4" placeholder="Como podemos ajudar?" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-full">Enviar Mensagem</button>
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-content">
+      <div class="footer-brand">
+        <img src="images/logo-white-hor.png" alt="Sueste" class="footer-logo">
+        <p>&copy; 2026 Sueste Creative Agency.</p>
+      </div>
+      <div class="footer-links">
+        <a href="#">Instagram</a>
+        <a href="#">LinkedIn</a>
+        <a href="#">Behance</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
