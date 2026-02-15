@@ -12,7 +12,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700;800&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700;800;900&display=swap"
     rel="stylesheet">
 
   <!-- Icons -->
@@ -27,12 +27,13 @@
   <!-- Background Elements -->
   <canvas id="canvas-waves" class="fixed-bg-canvas"></canvas>
   <div class="noise-overlay"></div>
+  <!-- NEW GLOBAL ORB -->
+  <div id="glow-orb" class="glow-orb"></div>
 
   <!-- Header -->
   <header class="site-header">
     <div class="container header-inner">
       <a href="#" class="brand-link">
-        <!-- Ensure logo path is correct -->
         <img src="images/logo-white-hor.png" alt="Sueste" class="brand-logo">
       </a>
 
@@ -57,7 +58,7 @@
     <a href="#contacto">Contacto</a>
   </div>
 
-  <!-- 1. HERO SECTION (Video + Typed) -->
+  <!-- 1. HERO SECTION -->
   <section id="hero" class="hero">
     <div class="hero-video-wrap">
       <video id="heroVideo" class="hero-video-el" autoplay muted loop playsinline>
@@ -115,15 +116,13 @@
             </div>
           </div>
         </div>
-        <!-- Visual Element -->
-        <div class="intro-visual fade-up delay-1">
-          <div class="abstract-shape"></div>
-        </div>
+        <!-- Orb is now global, so this is empty spacing -->
+        <div></div>
       </div>
     </div>
   </section>
 
-  <!-- 3. SERVICES (Glass Cards) -->
+  <!-- 3. SERVICES -->
   <section id="servicos" class="section">
     <div class="container mb-4 text-center">
       <span class="label fade-up">Expertise</span>
