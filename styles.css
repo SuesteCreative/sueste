@@ -1,5 +1,5 @@
 /* 
-  SUESTE CREATIVE AGENCY - V4.0 (PERFORMANCE & SCALE)
+  SUESTE CREATIVE AGENCY - V4.1 (MOBILE POLISHED)
 */
 
 :root {
@@ -20,9 +20,8 @@
   /* --- LAYOUT --- */
   --container-max: 1600px;
   --container-wide: 90vw;
-  /* Wider for immersion */
   --header-height: 90px;
-  --section-pad: 120px;
+  --section-pad: 140px;
 }
 
 /* -----------------------------------------------------------
@@ -36,7 +35,6 @@
   padding: 0;
 }
 
-/* Removed scroll-behavior: smooth for performance/clunkiness check */
 html {
   font-size: 16px;
   background-color: var(--bg-body);
@@ -83,15 +81,12 @@ video {
 }
 
 /* -----------------------------------------------------------
-   BACKGROUND LAYER STACKING (OPTIMIZED)
+   BACKGROUND LAYER STACKING
 ----------------------------------------------------------- */
-
-/* 1. Video (Bottom) */
 .hero-video-wrap {
   position: absolute;
   inset: 0;
   z-index: -10;
-  /* Bottom-most logic */
   pointer-events: none;
 }
 
@@ -102,29 +97,24 @@ video {
   opacity: 0.5;
 }
 
-/* 2. Global Orb (Above Video, Below Overlay) */
 .glow-orb {
   position: fixed;
   top: 50%;
   left: 50%;
   width: 50vw;
-  /* Relative to screen width now */
   height: 50vw;
   max-width: 1000px;
   max-height: 1000px;
   background: radial-gradient(circle, rgba(59, 130, 246, 0.6) 0%, rgba(59, 130, 246, 0.1) 60%, transparent 70%);
   filter: blur(80px);
-  /* Reduced blur radius for perf */
   border-radius: 50%;
   z-index: -5;
   pointer-events: none;
   transform: translate(-50%, -50%);
   opacity: 1;
   will-change: transform;
-  /* Hint for GPU */
 }
 
-/* 3. Hero Overlay (Darkens Video + Orb) */
 .hero-overlay {
   position: absolute;
   inset: 0;
@@ -132,7 +122,6 @@ video {
   background: linear-gradient(to bottom, rgba(5, 5, 5, 0.3), rgba(5, 5, 5, 1) 95%);
 }
 
-/* 4. Canvas Waves (Above Overlay for clarity) */
 .fixed-bg-canvas {
   position: fixed;
   top: 0;
@@ -144,7 +133,6 @@ video {
   opacity: 0.3;
 }
 
-/* 5. Noise Texture (Static Image - FASTER) */
 .noise-overlay {
   position: fixed;
   top: 0;
@@ -174,8 +162,6 @@ video {
   margin: 0 auto;
 }
 
-/* Wider */
-
 .section {
   padding: var(--section-pad) 0;
   position: relative;
@@ -194,10 +180,8 @@ video {
   text-align: center;
 }
 
-/* Text Scale Improvements */
 .title-lg {
   font-size: clamp(3.5rem, 6vw, 6rem);
-  /* Bigger base */
   letter-spacing: -0.03em;
 }
 
@@ -218,7 +202,6 @@ video {
   line-height: 1.5;
 }
 
-/* Buttons */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -262,7 +245,6 @@ video {
   transition: opacity 0.6s ease-out, transform 0.6s ease-out;
 }
 
-/* Faster transition */
 .fade-in {
   opacity: 0;
   transition: opacity 0.8s ease-out;
@@ -303,7 +285,6 @@ video {
 
 .site-header.scrolled {
   background: rgba(5, 5, 5, 0.95);
-  /* More opaque for perf */
   border-bottom: 1px solid var(--border-subtle);
 }
 
@@ -321,7 +302,6 @@ video {
   width: auto;
 }
 
-/* Bigger header logo */
 .desktop-nav {
   display: flex;
   gap: 4rem;
@@ -356,7 +336,7 @@ video {
 }
 
 /* -----------------------------------------------------------
-   HERO (Immersive)
+   HERO
 ----------------------------------------------------------- */
 .hero {
   position: relative;
@@ -368,7 +348,6 @@ video {
   overflow: hidden;
 }
 
-/* Typography Scale Fix */
 .hero-title-box {
   width: 100%;
   max-width: 1600px;
@@ -376,7 +355,6 @@ video {
 
 .hero-title-box h1 {
   font-size: clamp(4rem, 11vw, 10rem);
-  /* MASSIVE SCALE */
   line-height: 0.95;
   font-weight: 800;
   letter-spacing: -0.04em;
@@ -496,7 +474,6 @@ video {
   background: rgba(255, 255, 255, 0.03);
   border: 1px solid var(--border-subtle);
   padding: 4rem 2.5rem;
-  /* Bigger padding */
   border-radius: 12px;
   transition: 0.3s ease;
   height: 100%;
@@ -506,7 +483,6 @@ video {
   overflow: hidden;
 }
 
-/* Shifting Scale for Gradient */
 .card-gradient-top {
   position: absolute;
   left: 0;
@@ -819,7 +795,7 @@ footer {
 }
 
 /* -----------------------------------------------------------
-   RESPONSIVE (MOBILE)
+   RESPONSIVE (MOBILE OPTIMIZATION)
 ----------------------------------------------------------- */
 @media (max-width: 1200px) {
   .hero-title-box h1 {
@@ -827,16 +803,135 @@ footer {
   }
 }
 
-@media (max-width: 1024px) {
-  .services-grid {
-    grid-template-columns: 1fr 1fr;
+@media (max-width: 768px) {
+
+  /* Layout & Spacing */
+  .container {
+    width: 88%;
   }
 
-  .grid-2-col,
-  .contact-layout,
+  .section {
+    padding: 80px 0;
+  }
+
+  /* Header Mobile */
+  .site-header {
+    height: 70px;
+  }
+
+  .brand-logo {
+    height: 28px;
+  }
+
+  /* Hero Typography Fixed */
+  .hero-content {
+    margin-top: 20px;
+    text-align: left;
+  }
+
+  .hero-title-box h1 {
+    font-size: 3rem;
+    /* Fixed readable size for mobile */
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.5rem;
+  }
+
+  /* Hero Pills (Buttons) - Optimized size */
+  .hero-pills {
+    gap: 0.8rem;
+  }
+
+  .pill {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.85rem;
+    border-radius: 40px;
+    background: rgba(0, 0, 0, 0.6);
+  }
+
+  /* Intro Section */
+  .stats-row {
+    gap: 2rem;
+    margin-top: 3rem;
+    flex-wrap: wrap;
+  }
+
+  .stat-val {
+    font-size: 2.5rem;
+  }
+
+  /* Services Grid - 1 Column */
+  .services-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .glass-card {
+    padding: 2rem;
+  }
+
+  /* iPhone / Mobile First Section */
+  .mf-grid {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  .iphone {
+    width: 260px;
+    height: 520px;
+    margin: 0 auto;
+    transform: translateX(0) !important;
+    opacity: 1 !important;
+  }
+
+  .phone-wrapper {
+    height: auto;
+    padding: 2rem 0;
+  }
+
+  /* Portfolio */
   .portfolio-grid {
     grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  .project-meta h3 {
+    font-size: 1.8rem;
+  }
+
+  /* Contact */
+  .contact-layout {
+    grid-template-columns: 1fr;
     gap: 4rem;
+  }
+
+  .contact-link {
+    font-size: 1.2rem;
+  }
+
+  /* Footer */
+  .footer-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2rem;
+  }
+
+  .footer-links {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .footer-links a {
+    margin: 0;
+  }
+
+  /* Mobile Stacking Fixes */
+  .hero {
+    min-height: auto;
+    height: auto;
+    padding: 140px 0 80px 0;
   }
 
   .desktop-nav,
@@ -847,77 +942,13 @@ footer {
   .mobile-toggle {
     display: flex;
   }
-
-  .phone-wrapper {
-    margin-top: 3rem;
-    height: auto;
-  }
-
-  .iphone {
-    transform: translateX(0);
-    opacity: 1;
-    margin: 0 auto;
-    width: 280px;
-    height: 560px;
-  }
-
-  .section-pad {
-    padding: 80px 0;
-  }
-
-  .title-lg {
-    font-size: 3rem;
-  }
-
-  .container,
-  .container-wide,
-  .hero-title-box {
-    width: 90%;
-    max-width: 100%;
-  }
 }
 
-@media (max-width: 600px) {
-  .services-grid {
-    grid-template-columns: 1fr;
-  }
+@media (max-width: 380px) {
 
+  /* Small phones */
   .hero-title-box h1 {
-    font-size: 13vw;
-    line-height: 1;
-    word-break: break-word;
-  }
-
-  /* Huge on mobile too */
-  .footer-inner {
-    flex-direction: column;
-    gap: 2rem;
-    align-items: flex-start;
-  }
-
-  .footer-links {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-
-  .footer-links a {
-    margin: 0;
-  }
-
-  .intro-text .stats-row {
-    gap: 2rem;
-  }
-
-  .stat-val {
-    font-size: 3rem;
-  }
-
-  /* Mobile Stacking Fixes */
-  .hero {
-    min-height: 100vh;
-    height: auto;
-    padding: 120px 0;
+    font-size: 2.5rem;
   }
 }
 
@@ -928,8 +959,8 @@ footer {
   left: 0;
   width: 100%;
   height: 100vh;
-  background: rgba(0, 0, 0, 0.95);
-  backdrop-filter: blur(10px);
+  background: #050505;
+  /* Solid black for better readability */
   z-index: 9999;
   display: flex;
   flex-direction: column;
@@ -947,7 +978,7 @@ footer {
 }
 
 .mobile-nav-overlay a {
-  font-size: 2.5rem;
+  font-size: 2rem;
   font-weight: 700;
   color: white;
   letter-spacing: -0.02em;
