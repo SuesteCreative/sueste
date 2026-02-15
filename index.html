@@ -8,7 +8,7 @@
   <meta name="description"
     content="Sueste - Creative Agency. Movimento com intenção. Design, Estratégia e Media no Algarve.">
 
-  <!-- Fonts: Outfit for Headings, Inter for Body -->
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
@@ -16,60 +16,84 @@
     rel="stylesheet">
 
   <link rel="stylesheet" href="styles.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
   <link rel="icon" href="images/fav-icon.png">
 </head>
 
 <body>
 
   <!-- Background Elements -->
-  <div class="noise-overlay"></div>
-  <canvas id="canvas-waves"></canvas>
-
-  <!-- Navigation -->
-  <header class="site-header fixed-header glass">
-    <div class="container header-inner">
-      <a href="#" class="brand-link">
-        <img src="images/logo-white-hor.png" alt="Sueste Logo" class="brand-logo">
-      </a>
-
-      <nav class="main-nav desktop-only">
-        <a href="#servicos" class="nav-link">Serviços</a>
-        <a href="#portfolio" class="nav-link">Portfólio</a>
-        <a href="#processo" class="nav-link">Processo</a>
-        <a href="#sobre" class="nav-link">Sobre</a>
-      </nav>
-
-      <a href="#contacto" class="btn btn-primary glow-effect">Falar Connosco</a>
-    </div>
-  </header>
+  <canvas id="canvas-waves" style="position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;opacity:0.5;"></canvas>
 
   <main>
-    <!-- Hero Section -->
-    <section id="hero" class="hero-section">
-      <div class="hero-bg-video-wrapper">
-        <video autoplay muted loop playsinline class="hero-bg-video">
-          <source src="images/hero-video.mp4" type="video/mp4">
+    <!-- 
+      LEGACY HERO SECTION 
+      (Restored to original look/feel as requested)
+    -->
+    <section id="hero" class="hero hero-video" aria-label="Hero">
+      <div class="hero-video-wrap" aria-hidden="true">
+        <video id="heroVideo" class="hero-video-el" autoplay muted loop playsinline webkit-playsinline preload="auto"
+          disablepictureinpicture>
+          <source src="images/hero-video.mp4" type="video/mp4" />
         </video>
-        <div class="video-overlay"></div>
       </div>
+
+      <div class="hero-overlay" aria-hidden="true"></div>
+
+      <header class="site-header site-header--overlay" id="topo" role="banner">
+        <div class="container header-inner">
+          <a class="brand" href="#topo" aria-label="Sueste - Creative Agency, voltar ao topo">
+            <img src="images/logo-white-hor.png" alt="Sueste - Creative Agency" width="520" height="120"
+              class="brand-logo brand-logo--xl" />
+          </a>
+
+          <button class="nav-toggle" type="button" aria-label="Abrir menu">
+            <span class="nav-toggle-lines" aria-hidden="true"></span>
+          </button>
+
+          <nav class="site-nav site-nav--pills" id="site-nav" aria-label="Navegação principal">
+            <a class="nav-pill" href="#servicos">Serviços</a>
+            <a class="nav-pill" href="#portfolio">Portfólio</a>
+            <a class="nav-pill" href="#processo">Processo</a>
+            <a class="nav-pill" href="#sobre">Sobre</a>
+            <a class="nav-pill nav-pill--cta" href="#contacto">Pedir proposta</a>
+          </nav>
+        </div>
+      </header>
 
       <div class="container hero-content">
-        <h1 class="hero-title">
-          Movimento que cria <br>
-          <span class="text-gradient">Impacto.</span>
-        </h1>
-        <p class="hero-subtitle">
-          Direção criativa, estratégia digital e produção visual.
-          Elevamos marcas através de forças invisíveis e resultados visíveis.
-        </p>
+        <div class="hero-left">
+          <div class="hero-title-box">
+            <h1 class="hero-typed" aria-label="O que move nem sempre se vê. Mas o impacto é inevitável.">
+              <span class="typed-row">
+                <span id="typed-prefix" class="typed-prefix" data-text="O que move nem sempre se vê. Mas o "></span>
+                <span id="typed-slow" class="typed-slow" data-text="impacto é "></span>
+                <span id="typed-highlight" class="typed-highlight" data-text="inevitável."></span>
+                <span class="typed-caret" aria-hidden="true"></span>
+              </span>
+            </h1>
+          </div>
+
+          <div class="hero-actions-box">
+            <div class="hero-pills" role="navigation" aria-label="Atalhos para serviços">
+              <a class="pill-link" href="#servicos">Design Gráfico</a>
+              <a class="pill-link" href="#portfolio">Social Media</a>
+              <a class="pill-link" href="#servicos">Desenvolvimento Web</a>
+              <a class="pill-link" href="#servicos">Drone Media</a>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <div class="scroll-indicator">
-        <span class="mouse">
-          <span class="wheel"></span>
+      <a class="scroll-indicator" href="#servicos" aria-label="Scroll para baixo">
+        <span class="scroll-track" aria-hidden="true">
+          <span class="scroll-ball" aria-hidden="true"></span>
         </span>
-      </div>
+        <span class="scroll-label">EXPLORE</span>
+      </a>
     </section>
+
+    <!-- NEW PREMIUM CONTENT SECTIONS -->
 
     <!-- Services Section -->
     <section id="servicos" class="section">
@@ -81,22 +105,22 @@
 
         <div class="grid services-grid">
           <div class="card glass service-card">
-            <div class="icon-box">01</div>
+            <div class="icon-box"><i data-lucide="palette" size="32"></i></div>
             <h3>Branding & Identidade</h3>
             <p>Construção de marcas com alma. Logótipos, sistemas visuais e guias de estilo que definem quem você é.</p>
           </div>
           <div class="card glass service-card">
-            <div class="icon-box">02</div>
+            <div class="icon-box"><i data-lucide="monitor" size="32"></i></div>
             <h3>Web & Digital</h3>
             <p>Websites imersivos e funcionais. Experiências digitais desenhadas para performance e conversão.</p>
           </div>
           <div class="card glass service-card">
-            <div class="icon-box">03</div>
+            <div class="icon-box"><i data-lucide="share-2" size="32"></i></div>
             <h3>Social & Conteúdo</h3>
             <p>Estratégia de redes sociais e criação de conteúdo que gera diálogo e constrói comunidades.</p>
           </div>
           <div class="card glass service-card">
-            <div class="icon-box">04</div>
+            <div class="icon-box"><i data-lucide="aperture" size="32"></i></div>
             <h3>Drone & Media</h3>
             <p>Produção audiovisual de alto nível. Filmagens de drone e fotografia que captam novas perspetivas.</p>
           </div>
@@ -119,7 +143,6 @@
               <div class="project-overlay">
                 <span class="project-cat">Branding / Web</span>
               </div>
-              <!-- Placeholder for project image -->
               <div class="placeholder-visual">DNA</div>
             </div>
             <div class="project-info">
@@ -173,13 +196,11 @@
             <h4>Imersão</h4>
             <p>Mergulhamos no seu universo para entender o problema e definir a direção.</p>
           </div>
-          <div class="step-connector"></div>
           <div class="step">
             <span class="step-number">02</span>
             <h4>Criação</h4>
             <p>Exploração visual e estratégica. Transformamos ideias em ativos tangíveis.</p>
           </div>
-          <div class="step-connector"></div>
           <div class="step">
             <span class="step-number">03</span>
             <h4>Entrega</h4>
@@ -195,16 +216,11 @@
         <div class="about-text">
           <span class="label">Sobre Nós</span>
           <h2 class="title-lg">Sueste.</h2>
-          <p class="lead">
-            Inspirados pelo vento que sopra do sudeste, trazendo calor e mudança de marés.
-          </p>
-          <p>
-            Somos uma agência focada no detalhe. Acreditamos que o design não é apenas estético, é estratégico.
-            No Algarve, criamos para o mundo, com uma visão limpa, moderna e intemporal.
-          </p>
+          <p class="lead">Inspirados pelo vento que sopra do sudeste, trazendo calor e mudança de marés.</p>
+          <p>Somos uma agência focada no detalhe. Acreditamos que o design não é apenas estético, é estratégico. No
+            Algarve, criamos para o mundo, com uma visão limpa, moderna e intemporal.</p>
         </div>
         <div class="about-visual glass">
-          <!-- Abstract representation of wind/waves -->
           <div class="abstract-circle"></div>
         </div>
       </div>
@@ -232,7 +248,10 @@
             <label for="message">Mensagem</label>
             <textarea id="message" name="message" rows="4" placeholder="Como podemos ajudar?" required></textarea>
           </div>
-          <button type="submit" class="btn btn-full">Enviar Mensagem</button>
+          <button type="submit" class="btn-full"
+            style="display:flex;align-items:center;justify-content:center;gap:10px;">
+            Enviar Mensagem <i data-lucide="send" size="18"></i>
+          </button>
         </form>
       </div>
     </section>
@@ -254,6 +273,9 @@
   </footer>
 
   <script src="script.js"></script>
+  <script>
+    lucide.createIcons();
+  </script>
 </body>
 
 </html>
