@@ -348,17 +348,29 @@ video {
   overflow: hidden;
 }
 
+/* Hero Title - FIXED SCALES (No more fluid math) */
 .hero-title-box {
   width: 100%;
-  max-width: 1600px;
+  max-width: 1400px;
+  text-align: center;
 }
 
+/* Re-centered for impact */
+
 .hero-title-box h1 {
-  font-size: clamp(4rem, 11vw, 10rem);
-  line-height: 0.95;
+  /* Default for Desktop (1920x1080 +) */
+  font-size: 6.5rem;
+  line-height: 1.1;
   font-weight: 800;
-  letter-spacing: -0.04em;
-  margin-bottom: 2rem;
+  letter-spacing: -0.03em;
+  margin-bottom: 2.5rem;
+}
+
+/* Explicit Laptop Override */
+@media (max-width: 1440px) {
+  .hero-title-box h1 {
+    font-size: 5rem;
+  }
 }
 
 .text-white {

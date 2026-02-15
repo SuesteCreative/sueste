@@ -156,7 +156,8 @@ function initTypedEffect() {
         } else {
             return;
         }
-        setTimeout(tick, (j > 0 && j < slow.length) ? 140 : 40);
+        // Speed up: 70ms for emphasis, 30ms for normal typing
+        setTimeout(tick, (j > 0 && j < slow.length) ? 70 : 30);
     }
 
     setTimeout(tick, 500);
